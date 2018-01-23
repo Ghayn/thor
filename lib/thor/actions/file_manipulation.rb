@@ -260,7 +260,7 @@ class Thor
       say_status :gsub, relative_to_original_destination_root(path), config.fetch(:verbose, true)
 
       unless options[:pretend]
-        content = File.binread(path).encode("UTF-8")
+        content = File.read(path, encoding: 'utf-8')
         content.gsub!(flag, *args, &block)
         File.open(path, "wb") { |file| file.write(content) }
       end
